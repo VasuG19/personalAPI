@@ -1,6 +1,7 @@
 <?php
 include "src/database.php";
 include "src/papers.php";
+include "src/authors.php";
 
 // Headers added here.
 header("Content-Type: application/json; charset=UTF-8");
@@ -17,10 +18,17 @@ if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))){
 $url = parse_url($_SERVER["REQUEST_URI"]);
 $path = $url['path'];
 
+
+
 switch($path){
     case '/coursework/app/papers':
         $papers = new Papers();
         $json = $papers->getData();
+    break;
+
+     case '/coursework/app/authors':
+        $authors = new Authors();
+        $json = $authors->getData();
     break;
 
     default:
