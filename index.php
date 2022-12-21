@@ -3,6 +3,8 @@ include "src/database.php";
 include "src/papers.php";
 include "src/authors.php";
 
+include "config/config.php";
+
 // Headers added here.
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
@@ -19,14 +21,19 @@ $url = parse_url($_SERVER["REQUEST_URI"]);
 $path = $url['path'];
 
 
-
 switch($path){
     case '/coursework/app/papers':
+    case '/coursework/app/paper':
+    case '/coursework/app/papers/':
+    case '/coursework/app/paper/':
         $papers = new Papers();
         $json = $papers->getData();
     break;
 
-     case '/coursework/app/authors':
+    case '/coursework/app/authors':
+    case '/coursework/app/author':
+    case '/coursework/app/authors/':
+    case '/coursework/app/author/':
         $authors = new Authors();
         $json = $authors->getData();
     break;

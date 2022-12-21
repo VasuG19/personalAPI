@@ -19,8 +19,8 @@ class Database
             );
         } catch (PDOException $e) {
             http_response_code(500);
-            $output['Database connection error'] = $e->getMessage();
-            echo json_encode($output);
+            $error['Database connection error'] = $e->getMessage();
+            echo json_encode($error);
             exit();
         }
     }
