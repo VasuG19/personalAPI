@@ -1,8 +1,4 @@
 <?php
-include "src/database.php";
-include "src/papers.php";
-include "src/authors.php";
-
 include "config/config.php";
 
 // Headers added here.
@@ -22,6 +18,12 @@ $path = $url['path'];
 
 
 switch($path){
+
+    case '/coursework/app/':
+        $base = new Base();
+        $json = $base->getData();
+    break;
+
     case '/coursework/app/papers':
     case '/coursework/app/paper':
     case '/coursework/app/papers/':
@@ -37,15 +39,11 @@ switch($path){
         $authors = new Authors();
         $json = $authors->getData();
     break;
-
+         http_response_code(404);
+        $data = array("Message"=>"Endpoint ".$path." not found");
+        $data = json_encode($data);
     default:
-    $json = json_encode(array(
-    "first_name" => "Mehtab",
-    "last_name" => "Gill",
-    "id" => "w20019386",
-    "conference name" => "chiplay",
-    "documentation" => "tbd"
-    ));
+        
 }
 
 echo $json
