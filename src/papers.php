@@ -14,12 +14,12 @@ class Papers
                         track.name,
                         track.short_name 
                     FROM paper 
-                    INNER Join track
-					WHERE paper.track_id = track.track_id";
+                    Join track
+					ON paper.track_id = track.track_id";
         $params = array();   
 
                     if(filter_has_var(INPUT_GET, 'track')){
-                         $sql .= " AND track.short_name = :track";
+                         $sql .= " WHERE track.short_name = :track";
                          $params['track'] = $_GET['track'];
 
                     }

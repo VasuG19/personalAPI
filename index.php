@@ -39,6 +39,15 @@ switch($path){
         $authors = new Authors();
         $json = $authors->getData();
     break;
+
+    case '/coursework/app/pages':
+    case '/coursework/app/page':
+    case '/coursework/app/pages/':
+    case '/coursework/app/page/':
+        $page = new Page();
+        $json = $page->getData();
+    break;
+
          http_response_code(404);
         $data = array("Message"=>"Endpoint ".$path." not found");
         $data = json_encode($data);
