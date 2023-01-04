@@ -40,12 +40,12 @@ switch($path){
         $json = $authors->getData();
     break;
 
-    case '/coursework/app/pages':
-    case '/coursework/app/page':
-    case '/coursework/app/pages/':
-    case '/coursework/app/page/':
-        $page = new Page();
-        $json = $page->getData();
+    case '/coursework/app/affiliations':
+    case '/coursework/app/affiliation':
+    case '/coursework/app/affiliations/':
+    case '/coursework/app/affiliation/':
+        $affiliation = new Affiliation();
+        $json = $affiliation->getData();
     break;
 
          http_response_code(404);
