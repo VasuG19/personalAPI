@@ -9,29 +9,12 @@ class Database
     }
 
     // create connection to database
-    private function setDbConnection($dbName)
-    {
-        try {
-            $this->dbConnection = new PDO('sqlite:' . $dbName);
-            $this->dbConnection->setAttribute(
-                PDO::ATTR_ERRMODE,
-                PDO::ERRMODE_EXCEPTION
-            );
-        } catch (PDOException $e) {
-            http_response_code(500);
-            $error['Database connection error'] = $e->getMessage();
-            echo json_encode($error);
-            exit();
-        }
+    private function setDbConnection($dbName) {        
+        $this->dbConnection = new PDO('sqlite:'.$dbName);
+        $this->dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function getDbConnection()
-    {
-        return $this->dbConnection;
-    }
-
-    //create prepared statement
-    public function executeSQL($sql, $params=[]){
+    public function executeSQL($sql, $params=[]) {
         $stmt = $this->dbConnection->prepare($sql);
         $stmt->execute($params);
 

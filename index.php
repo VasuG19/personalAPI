@@ -48,9 +48,8 @@ switch($path){
     break;
 
     default:
-       $endpoint = new Base();
+       $endpoint = new ClientError("Path not found: " . $path, 404);
 }
 
 $response = $endpoint->getData();
-echo $response;
-?>
+echo json_encode($response);
