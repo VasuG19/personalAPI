@@ -10,11 +10,7 @@ abstract class Endpoint extends Database
         $db = new Database("db/chiplay.sqlite");
         $this->initialiseSQL();
         $data = $db->executeSQL($this->sql, $this->sqlParams);
-        $this->setData( array(
-            "length" => count($data),
-            "message" => "Success",
-            "data" => $data
-        ));
+        $this->setData($data);
     }
     protected function setSQL($sql) {
         $this->sql = $sql;
