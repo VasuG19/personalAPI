@@ -6,7 +6,6 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
 http_response_code(200);
 
-
 //Base Endpoint
 if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))){
     http_response_code(405);
@@ -16,45 +15,43 @@ if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))){
 $url = parse_url($_SERVER["REQUEST_URI"]);
 $path = $url['path'];
 
-
 switch($path){
-    
+
+    case'/':
+        $endpoint = new Base();
+    break;
+
     case '/coursework/app/papers':
     case '/coursework/app/paper':
     case '/coursework/app/papers/':
     case '/coursework/app/paper/':
-        $papers = new Papers();
-        $json = $papers->getData();
+        $endpoint = new Papers();
     break;
 
     case '/coursework/app/authors':
     case '/coursework/app/author':
     case '/coursework/app/authors/':
     case '/coursework/app/author/':
-        $authors = new Authors();
-        $json = $authors->getData();
+        $endpoint = new Authors();
     break;
 
     case '/coursework/app/affiliations':
     case '/coursework/app/affiliation':
     case '/coursework/app/affiliations/':
     case '/coursework/app/affiliation/':
-        $affiliation = new Affiliation();
-        $json = $affiliation->getData();
+        $endpoint = new Affiliation();
     break;
 
     case '/coursework/app/auth':
     case '/coursework/app/authentiaction':
-        $auth = new Authentiaction();
-        $json = $auth->getData();
+        $endpoint = new Authentiaction();
     break;
 
     default:
-        $base = new Base();
-        $json = $base->getData();
-    break;
+     //   $endpoint = new ClientError("Path not found: " . $path, 404);
         
 }
 
-echo $json
+$response = $endpoint->getData();
+echo $response;
 ?>
