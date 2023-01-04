@@ -9,7 +9,7 @@ class Database
     }
 
     // create connection to database
-    public function setDbConnection($dbName)
+    private function setDbConnection($dbName)
     {
         try {
             $this->dbConnection = new PDO('sqlite:' . $dbName);

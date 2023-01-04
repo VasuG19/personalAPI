@@ -43,6 +43,12 @@ switch($path){
         $json = $affiliation->getData();
     break;
 
+    case '/coursework/app/auth':
+    case '/coursework/app/authentiaction':
+        $auth = new Authentiaction();
+        $json = $auth->getData();
+    break;
+
     default:
         $base = new Base();
         $json = $base->getData();
