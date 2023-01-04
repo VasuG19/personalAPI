@@ -1,13 +1,13 @@
 <?php
 
-abstract class Endpoint
+abstract class Endpoint extends Database
 {
     private $data;
     private $sql;
     private $sqlParams;
 
     public function __construct() {
-        $db = new Database("./db/chiplay.sqlite");
+        $db = new Database("db/chiplay.sqlite");
         $this->initialiseSQL();
         $data = $db->executeSQL($this->sql, $this->sqlParams);
         $this->setData( array(

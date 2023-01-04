@@ -43,13 +43,12 @@ switch($path){
     break;
 
     case '/coursework/app/auth':
-    case '/coursework/app/authentiaction':
-        $endpoint = new Authentiaction();
+    case '/coursework/app/authenticate':
+        $endpoint = new Authenticate();
     break;
 
     default:
-     //   $endpoint = new ClientError("Path not found: " . $path, 404);
-        
+       $endpoint = new Base();
 }
 
 $response = $endpoint->getData();
