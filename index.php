@@ -19,11 +19,6 @@ $path = $url['path'];
 
 switch($path){
 
-    case '/coursework/app/':
-        $base = new Base();
-        $json = $base->getData();
-    break;
-
     case '/coursework/app/papers':
     case '/coursework/app/paper':
     case '/coursework/app/papers/':
@@ -52,6 +47,9 @@ switch($path){
         $data = array("Message"=>"Endpoint ".$path." not found");
         $data = json_encode($data);
     default:
+        $base = new Base();
+        $json = $base->getData();
+    break;
         
 }
 
