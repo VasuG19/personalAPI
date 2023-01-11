@@ -6,6 +6,8 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
 http_response_code(200);
 
+define('SECRET', ">4!F.oZ&}D8|gtX+U-~O@)8=KL>!?w");
+
 //Base Endpoint
 if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))){
     http_response_code(405);
@@ -44,7 +46,14 @@ switch($path){
 
     case '/coursework/app/auth':
     case '/coursework/app/authenticate':
+    case '/coursework/app/auth/':
+    case '/coursework/app/authenticate/':
         $endpoint = new Authenticate();
+    break;
+
+    case '/coursework/app/update':
+    case '/coursework/app/update/':
+        $endpoint = new Update();
     break;
 
     default:
