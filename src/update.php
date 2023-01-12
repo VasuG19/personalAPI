@@ -6,19 +6,19 @@ use FirebaseJWT\Key;
 class Update extends Endpoint
 {
     public function __construct(){
-    $this->validateRequestMethod("POST");
-    $this->validateToken();
-    $this->validateUpdateParams();
-    
-    $db = new Database("db/films.sqlite");
-    $this->initialiseSQL();
-    $queryResult = $db->executeSQL($this->getSQL(), $this->getSQLParams());
+        
+        $db = new Database("db/films.sqlite");
+        $this->validateRequestMethod("POST");
+        $this->validateToken();
+        $this->validateUpdateParams();
+        $this->initialiseSQL();
+        $queryResult = $db->executeSQL($this->getSQL(), $this->getSQLParams());
 
-    $this->setData( array(
-            "length" => 0,
-            "message" => "success",
-            "data" => null
-        ));
+        $this->setData( array(
+                "length" => 0,
+                "message" => "success",
+                "data" => null
+            ));
     }
 
     private function validateRequestMethod($method) {
@@ -75,33 +75,33 @@ class Update extends Endpoint
     private function validateUpdateParams() {
  
         // 1. Look for a language and film_id parameter
-        if (!filter_has_var(INPUT_POST,'language')) {
+        if (!filter_has_var(INPUT_POST,'award')) {
             die( json_encode( array(
-                "message" => "invalid request method"
+                "message" => "award parameter required"
             )));
         }
-        if (!filter_has_var(INPUT_POST,'film_id')) {
+        if (!filter_has_var(INPUT_POST,'paper_id')) {
             die( json_encode( array(
-                "message" => "invalid request method"
+                "message" => "paper_id parameter required"
             )));
         }
             
-        // 2. Check to see if a valid language is supplied 
-        $languages = ["english", "french", "german", "italian", "japanese", "mandarin"];
-        if (!in_array(strtolower($_POST['language']), $languages)) {
+        // 2. Check to see if a valid award is supplied 
+        $award_status = ["true", "null"];
+        if (!in_array(strtolower($_POST['award']), $award_status)) {
             die( json_encode( array(
-                "message" => "invalid request method"
+                "message" => "invalid award status"
             )));
         }
     }
 
     protected function initialiseSQL() {
-        $language_ids = ["english"=>1,"french"=>3,"german"=>6,"italian"=>2,"japanese"=>4, "mandarin"=>5];
+        $award_ids = ["true"=>1,"null"=>0];
         
-        $lang_id = $language_ids[strtolower($_POST['language'])];
+        $award = $award_ids[strtolower($_POST['award'])];
         
-        $sql = "UPDATE film SET language_id = :language_id WHERE film_id = :film_id";
+        $sql = "UPDATE paper SET award = :award WHERE paper_id = :paper_id";
         $this->setSQL($sql);
-        $this->setSQLParams(['language_id'=> $lang_id, 'film_id'=>$_POST['film_id']]);
+        $this->setSQLParams(['award'=> $award, 'paper_id'=>$_POST['paper_id']]);
     }
 }

@@ -4,7 +4,10 @@ include "config/config.php";
 // Headers added here.
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Origin: *");
-http_response_code(200);
+header("Access-Control-Allow-Headers: *");
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {    
+    exit(0);
+}
 
 define('SECRET', ">4!F.oZ&}D8|gtX+U-~O@)8=KL>!?w");
 
