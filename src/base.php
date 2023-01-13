@@ -1,36 +1,29 @@
 <?php
 class Base extends Endpoint {
-
-    private $sql;
-    private $sqlParams;
-
-
     public function __construct()
     {
+        $db = new Database("db/chiplay.sqlite");
+        $sql = "SELECT conference_information.name 
+                FROM conference_information ";
+        $data = $db->executeSQL($sql);
+
         $name = array(
             "first_name" => "Mehtab",
             "last_name" => "Gill",
         );
-        $db = new Database("db/chiplay.sqlite");
-        $this->initialiseSQL();
-        $data = $db->executeSQL($this->sql, $this->sqlParams);
-        $this->setData( array(
-            "length" => count($data),
-            "message" => "Success",
+
+        $base = array(
             "name" => $name,
             "id" => "w123456789",
-            "conference name" => $data
+            "link to documentation: " => "",
+            "conference" => $data);
+        
+        $this->setData( array(
+            "length" => count($base),
+            "message" => "Success",
+            "data" => $base,
         ));
 
     }
-
-     public function initialiseSQL(){
-
-        $sql = "SELECT conference_information.name 
-                FROM conference_information ";
-        $this->setSQL($sql);
-
-    }
-
     
 }
