@@ -17,8 +17,8 @@ if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))){
     $response['message'] = "Invalid method: ". $_SERVER['REQUEST_METHOD'];
 } 
 
-$url = parse_url($_SERVER["REQUEST_URI"]);
-$path = $url['path'];
+$path = parse_url($_SERVER['REQUEST_URI'])['path'];
+$path = str_replace("coursework/app/", "", $path);
 
 switch($path){
 

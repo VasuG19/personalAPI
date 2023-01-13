@@ -20,7 +20,6 @@ class Update extends Endpoint
                 "data" => null
             ));
     }
-
     private function validateRequestMethod($method) {
     if ($_SERVER['REQUEST_METHOD'] != $method) {
             die( json_encode( array(
@@ -71,9 +70,7 @@ class Update extends Endpoint
             )));
         }
     }
-
     private function validateUpdateParams() {
- 
         // 1. Look for a language and film_id parameter
         if (!filter_has_var(INPUT_POST,'award')) {
             die( json_encode( array(
@@ -87,7 +84,7 @@ class Update extends Endpoint
         }
             
         // 2. Check to see if a valid award is supplied 
-        $award_status = ["true", "null"];
+        $award_status = ["true", ""];
         if (!in_array(strtolower($_POST['award']), $award_status)) {
             die( json_encode( array(
                 "message" => "invalid award status"
@@ -96,7 +93,7 @@ class Update extends Endpoint
     }
 
     protected function initialiseSQL() {
-        $award_ids = ["true"=>1,"null"=>0];
+        $award_ids = ["true"=>1,""=>0];
         
         $award = $award_ids[strtolower($_POST['award'])];
         
