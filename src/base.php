@@ -1,7 +1,6 @@
 <?php
 class Base extends Endpoint {
 
-    private $data;
     private $sql;
     private $sqlParams;
 
