@@ -26,36 +26,36 @@ switch($path){
         $endpoint = new Base();
     break;
 
-    case '/coursework/app/papers':
-    case '/coursework/app/paper':
-    case '/coursework/app/papers/':
-    case '/coursework/app/paper/':
+    case '/papers':
+    case '/paper':
+    case '/papers/':
+    case '/paper/':
         $endpoint = new Papers();
     break;
 
-    case '/coursework/app/authors':
-    case '/coursework/app/author':
-    case '/coursework/app/authors/':
-    case '/coursework/app/author/':
+    case '/authors':
+    case '/author':
+    case '/authors/':
+    case '/author/':
         $endpoint = new Authors();
     break;
 
-    case '/coursework/app/affiliations':
-    case '/coursework/app/affiliation':
-    case '/coursework/app/affiliations/':
-    case '/coursework/app/affiliation/':
+    case '/affiliations':
+    case '/affiliation':
+    case '/affiliations/':
+    case '/affiliation/':
         $endpoint = new Affiliation();
     break;
 
-    case '/coursework/app/auth':
-    case '/coursework/app/authenticate':
-    case '/coursework/app/auth/':
-    case '/coursework/app/authenticate/':
+    case '/auth':
+    case '/authenticate':
+    case '/auth/':
+    case '/authenticate/':
         $endpoint = new Authenticate();
     break;
 
-    case '/coursework/app/update':
-    case '/coursework/app/update/':
+    case '/update':
+    case '/update/':
         $endpoint = new Update();
     break;
 
