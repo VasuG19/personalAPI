@@ -6,7 +6,7 @@ class Papers extends Endpoint
         $sql = "SELECT paper.paper_id,
                        paper.track_id,
                        paper.title,
-                       paper.award,
+                       coalesce(award, 'false') award,
                        paper.abstract,
                        track.track_id,
                        track.name,
@@ -21,7 +21,6 @@ class Papers extends Endpoint
                 $params['track'] = $_GET['track'];
 
         }
-        
 
         $this->setSQL($sql);
         $this->setSQLParams($params);
