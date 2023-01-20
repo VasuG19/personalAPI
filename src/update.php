@@ -52,7 +52,7 @@ class Update extends Endpoint
         $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
         } catch (Exception $e) {
             die( json_encode( array(
-                "message" => "invalid key"
+                "message" => "invalid key auth"
             )));
         }
 
