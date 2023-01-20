@@ -42,7 +42,7 @@ class Update extends Endpoint
                 
         if (substr($authorizationHeader, 0, 7) != 'Bearer ') {
             die( json_encode( array(
-                "message" => "invalid request method"
+                "message" => "invalid auth header"
             )));
         }
 
@@ -52,13 +52,13 @@ class Update extends Endpoint
         $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
         } catch (Exception $e) {
             die( json_encode( array(
-                "message" => "invalid request method"
+                "message" => "invalid key"
             )));
         }
 
         if ($decoded->iss != $_SERVER['HTTP_HOST']) {
             die( json_encode( array(
-                "message" => "invalid request method"
+                "message" => "invalid server host"
             )));
         }
     }
