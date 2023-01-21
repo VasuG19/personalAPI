@@ -20,47 +20,37 @@ if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))){
 $path = parse_url($_SERVER['REQUEST_URI'])['path'];
 $path = str_replace("coursework/app/", "", $path);
 
-switch($path){
-
-    case'/':
-        $endpoint = new Base();
-    break;
-
-    case '/papers':
-    case '/paper':
-    case '/papers/':
-    case '/paper/':
-        $endpoint = new Papers();
-    break;
-
-    case '/authors':
-    case '/author':
-    case '/authors/':
-    case '/author/':
-        $endpoint = new Authors();
-    break;
-
-    case '/affiliations':
-    case '/affiliation':
-    case '/affiliations/':
-    case '/affiliation/':
-        $endpoint = new Affiliation();
-    break;
-
-    case '/auth':
-    case '/authenticate':
-    case '/auth/':
-    case '/authenticate/':
-        $endpoint = new Authenticate();
-    break;
-
-    case '/update':
-    case '/update/':
-        $endpoint = new Update();
-    break;
-
-    default:
-       $endpoint = new ClientError("Path not found: " . $path, 404);
+try {
+    switch($path){
+        case'/':
+            $endpoint = new Base();
+        break;
+        case '/papers':
+        case '/papers/':
+            $endpoint = new Papers();
+        break;
+        case '/authors':
+        case '/authors/':
+            $endpoint = new Authors();
+        break;
+        case '/affiliation':
+        case '/affiliation/':
+            $endpoint = new Affiliation();
+        break;
+        case '/auth':
+        case '/auth/':
+            $endpoint = new Authenticate();
+        break;
+        case '/update':
+        case '/update/':
+            $endpoint = new Update();
+        break;
+        default:
+        $endpoint = new ClientError("Path not found: " . $path, 404);
+    }
+}
+catch(ClientErrorException $e) {
+    $endpoint = new ClientError($e->getMessage(), $e->getCode());
 }
 
 $response = $endpoint->getData();

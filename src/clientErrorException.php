@@ -1,6 +1,6 @@
 <?php
 
-class ClientErrorException extends ClientError
+class ClientErrorException extends Exception
 {
     
 }

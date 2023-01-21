@@ -23,9 +23,7 @@ class Update extends Endpoint
 }
     private function validateRequestMethod($method) {
     if ($_SERVER['REQUEST_METHOD'] != $method) {
-            die( json_encode( array(
-                "message" => "invalid request method"
-            )));
+            throw new ClientErrorException("invalid request method", 405);
         }
     }
     private function validateToken() {
@@ -41,9 +39,7 @@ class Update extends Endpoint
         }
                 
         if (substr($authorizationHeader, 0, 7) != 'Bearer ') {
-            die( json_encode( array(
-                "message" => "invalid auth header"
-            )));
+             throw new ClientErrorException("Bearer token required", 401);
         }
 
         $jwt = trim(substr($authorizationHeader, 7));
@@ -51,37 +47,27 @@ class Update extends Endpoint
         try {
         $decoded = JWT::decode($jwt, new Key($key, 'HS256'));
         } catch (Exception $e) {
-            die( json_encode( array(
-                "message" => "invalid key auth"
-            )));
+           throw new ClientErrorException($e->getMessage(), 401);
         }
 
         if ($decoded->iss != $_SERVER['HTTP_HOST']) {
-            die( json_encode( array(
-                "message" => "invalid server host"
-            )));
+            throw new ClientErrorException("invalid token issuer", 401);
         }
     }
     private function validateUpdateParams() {
  
   // 1. Look for a language and film_id parameter
   if (!filter_has_var(INPUT_POST,'award')) {
-    die( json_encode( array(
-                "message" => "no award"
-            )));
+    throw new ClientErrorException("award parameter required", 400);
   }
   if (!filter_has_var(INPUT_POST,'paper_id')) {
-    die( json_encode( array(
-                "message" => "invalid id"
-            )));
+    throw new ClientErrorException("paper_id parameter required", 400);
   }
        
   // 2. Check to see if a valid language is supplied 
   $languages = ["true", "", "false"];
   if (!in_array(strtolower($_POST['award']), $languages)) {
-    die( json_encode( array(
-                "message" => "invalid award"
-            )));
+    throw new ClientErrorException("Invalid award", 400);
   }
 }
 

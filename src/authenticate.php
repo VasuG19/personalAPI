@@ -23,33 +23,25 @@ class Authenticate extends Endpoint
 
     private function validateRequestMethod($method) {
         if ($_SERVER['REQUEST_METHOD'] != $method){
-            die( json_encode( array(
-                "message" => "invalid request method"
-            )));
+           throw new ClientErrorException("invalid request method", 405);
         }
     }
 
      private function validateAuthParameters() {
         if ( !isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) ) {
-            die( json_encode( array(
-                "message" => "username and password required"
-            )));
+            throw new ClientErrorException("username and password required", 401);
         }
     }
 
     private function validateUsername($data) {
         if (count($data)<1) {
-            die( json_encode( array(
-                "message" => "invalid credentials"
-            )));
+           throw new ClientErrorException("invalid credentials", 401);
         }
     }
 
     private function validatePassword($data) {
         if (!password_verify($_SERVER['PHP_AUTH_PW'], $data[0]['password'])) {
-            die( json_encode( array(
-                "message" => "invalid credentials"
-            )));
+            throw new ClientErrorException("invalid credentials", 401);
         }
     }
 
