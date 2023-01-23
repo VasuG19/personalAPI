@@ -3,6 +3,15 @@
 use FirebaseJWT\JWT;
 use FirebaseJWT\Key;
 
+/**
+ * Update endpoint
+ * 
+ * This class will update the award status of a selected paper
+ * using the paper_id
+ *  
+ * @author Mehtab Gill
+ */
+
 class Update extends Endpoint
 {
     public function __construct() {

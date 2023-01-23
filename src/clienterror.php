@@ -1,12 +1,13 @@
 <?php
 
 /**
- * Endpoint for handling incorrect input from client 
- * 
- * This endpoint can be used if there is invalid input such as an invalid
- * request method, an invalid endpoint, or invalid parameters
- *﻿
- * @author first last
+ * 
+ * Endpoint for handling incorrect input from client 
+ * 
+ * This endpoint can be used if there is invalid input such as an invalid
+ * request method, an invalid endpoint, or invalid parameters
+ *
+ * @author Mehtab Gill
  */
 class ClientError extends Endpoint
 {

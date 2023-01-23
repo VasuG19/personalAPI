@@ -1,4 +1,14 @@
 <?php
+/**
+ *  Base endpoint
+ * 
+ * The base endpoint is the standard endpoint 
+ * before any data is recieved
+ * 
+ * this is not used by the web app
+ *  
+ * @author Mehtab Gill
+ */
 class Base extends Endpoint {
     public function __construct()
     {

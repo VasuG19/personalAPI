@@ -1,9 +1,20 @@
 <?php
+/**
+ *  Authors endpoint
+ * 
+ * selects data from the Authors table in the database to 
+ * return the author_id along with thier first middle and last names
+ * 
+ * the class also selects from the paper_has_author table to return which
+ * author has written which paper using the author and paper _ID's
+ * 
+ * @author Mehtab Gill
+ */
 class Authors extends Endpoint
 {
     protected function initialiseSQL()
      { 
-        $sql = "SELECT author.author_id,
+        $sql = "SELECT  author.author_id,
                         author.first_name,
                         author.middle_initial,
                         author.last_name,

@@ -1,15 +1,15 @@
 <?php
 include "config/config.php";
 
-// Headers added here.
-header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
+/**
+ * Base file from which all information will be accessed
+ *  
+ * @author Mehtab Gill
+ */
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {    
     exit(0);
 }
-
-define('SECRET', ">4!F.oZ&}D8|gtX+U-~O@)8=KL>!?w");
 
 //Base Endpoint
 if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))){
@@ -20,6 +20,7 @@ if (!in_array($_SERVER['REQUEST_METHOD'], array("GET"))){
 $path = parse_url($_SERVER['REQUEST_URI'])['path'];
 $path = str_replace("coursework/app/", "", $path);
 
+// switch statement to route the API to the correct endpoints
 try {
     switch($path){
         case'/':

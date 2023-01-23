@@ -1,4 +1,13 @@
 <?php
+/**
+ *  Affiliation endpoint
+ * 
+ * selects data from the affiliation table in the database to 
+ * return the country and the institution of a specific author
+ * and the paper that they relate to
+ * 
+ * @author Mehtab Gill
+ */
 class Affiliation extends Endpoint
 {
      public function initialiseSQL() {

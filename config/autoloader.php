@@ -1,4 +1,12 @@
 <?php
+/**
+ * Autoloader
+ * 
+ * This is the autoloader which will automaticalluy load
+ * all .php files into 
+ * 
+ * @author Mehtab Gill
+ */
 class Autoload
 {
     public static function autoloader($className) {

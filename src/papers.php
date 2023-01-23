@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * Papers endpoint
+ * 
+ * selects call papers and paper data from the database
+ * 
+ * also selects data from the track table for the corresponding
+ * paper using the paper and track _ID's 
+ * 
+ * @author Mehtab Gill
+ */
 class Papers extends Endpoint
 {
      protected function initialiseSQL()

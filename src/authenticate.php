@@ -1,5 +1,16 @@
 <?php
 
+/**
+ *  Authenticate endpoint
+ * 
+ * Endpoint for the Admin page, encrypts the 
+ * username and password entered from the web
+ * app to verify against the login credentials 
+ * in the database using the Firebase back-end 
+ * service
+ *
+ * @author Mehtab Gill
+ */
 use FirebaseJWT\JWT;
 class Authenticate extends Endpoint
 {

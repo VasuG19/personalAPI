@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * A general class for endpoints
+ * 
+ *  
+ * @author Mehtab Gill
+ */
 abstract class Endpoint extends Database
 {
     private $data;

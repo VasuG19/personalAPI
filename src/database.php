@@ -1,4 +1,12 @@
 <?php
+
+/**
+ * 
+ * Connect and interact with an SQLite database 
+ * 
+ *
+ * @author Mehtab Gill
+ */
 class Database
 {
     //locate database
