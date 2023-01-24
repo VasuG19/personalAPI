@@ -5,7 +5,7 @@
  * error handeler for the API to catch when errors occur
  * 
  * 
- * @author Mehtab Gill
+ * 
  */
 function errorHandler($errno, $errstr, $errfile, $errline) {
    if ($errno != 2 && $errno != 8) {

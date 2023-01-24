@@ -5,7 +5,7 @@
  * exception handeler for the API to catch when exceptions occur
  * 
  * 
- * @author Mehtab Gill
+ * 
  */
 function exceptionHandler($e) {
    http_response_code(500);

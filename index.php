@@ -46,6 +46,10 @@ try {
         case '/update/':
             $endpoint = new Update();
         break;
+        case '/docs':
+        case '/docs/':
+            $endpoint = new Update();
+        break;
         default:
         $endpoint = new ClientError("Path not found: " . $path, 404);
     }
